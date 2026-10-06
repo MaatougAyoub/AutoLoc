@@ -33,6 +33,7 @@ public class Contrat {
     @Column(nullable = false)
     private boolean valide;
 
+
     // 1 Contrat -> 1 Reservation (cote proprietaire de la cle etrangere)
     @OneToOne(optional = false)
     @JoinColumn(name = "id_reservation", nullable = false, unique = true)

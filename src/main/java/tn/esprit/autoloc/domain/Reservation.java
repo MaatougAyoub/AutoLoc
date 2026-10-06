@@ -30,6 +30,7 @@ public class Reservation {
     @Column(nullable = false, length = 20)
     private StatutReservation statut;
 
+
     // * Reservation -> 1 Vehicule
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_vehicule", nullable = false)
