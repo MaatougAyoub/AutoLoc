@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "agence")
@@ -29,4 +31,12 @@ public class Agence {
 
     @Column(nullable = false, length = 20)
     private String telephone;
+
+    // 1 Agence -> * Employe
+    @OneToMany(mappedBy = "agence")
+    private List<Employe> employes = new ArrayList<>();
+
+    // 1 Agence -> * Vehicule
+    @OneToMany(mappedBy = "agence")
+    private List<Vehicule> vehicules = new ArrayList<>();
 }

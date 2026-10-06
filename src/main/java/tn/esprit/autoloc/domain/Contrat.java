@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
+import java.util.ArrayList;
+
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -29,4 +32,13 @@ public class Contrat {
 
     @Column(nullable = false)
     private boolean valide;
+
+    // 1 Contrat -> 1 Reservation (cote proprietaire de la cle etrangere)
+    @OneToOne(optional = false)
+    @JoinColumn(name = "id_reservation", nullable = false, unique = true)
+    private Reservation reservation;
+
+    // Composition : 1 Contrat <>-> * Paiement (les paiements dependent du contrat)
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Paiement> paiements = new ArrayList<>();
 }
